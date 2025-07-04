@@ -56,7 +56,7 @@ def init_dataset_and_dataloader(args, configs, gan):
     cv_dataset = Dataset(args.cv_data, data_pipeline=data_pipeline, mode='train', gan=gan, shuffle=False, partition=False)
 
     # do not use persistent_workers=True, as whisper tokenizer opens tiktoken file each time when the for loop starts
-    train_data_loader = DataLoader(train_dataset,
+    train_data_loader = (train_dataset,
                                    batch_size=None,
                                    pin_memory=args.pin_memory,
                                    num_workers=args.num_workers,
